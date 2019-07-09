@@ -111,7 +111,7 @@
 对上述提取的特征采用包含 `2` 个隐层的神经网络做分类，网络结构如下所示：
 
   <div align='center'>
-  <img src="./resources/net_structure.png" alt="net_structure.png" height="285" width="585">
+  <img src="./resources/net_structure.PNG" alt="net_structure.png" height="285" width="585">
   </div>  
 
 对 `3` 种类型共 `695` 条渔船信息做分类识别的结果如下所示（由于尚未对特征参数及网络结构优化，所以训练后期仍存在 `0.5%` 的较小精度波动）。  
@@ -141,12 +141,12 @@ Cross_entropy on the whole training set: 0.0034, accuracy: 100.00%.
 通过 `Tensorboard` 进行可视化处理后得到识别精度随迭代次数的变化：
 
   <div align='center'>
-  <img src="./resources/accuracy.png" alt="accuracy.png" height="285" width="585">
+  <img src="./resources/accuracy.PNG" alt="accuracy.png" height="285" width="585">
   </div>  
 
 以及交叉熵损失随迭代次数的变化：
 
   <div align='center'>
-  <img src="./resources/cross_entropy.png" alt="cross_entropy.png" height="285" width="585">
+  <img src="./resources/cross_entropy.PNG" alt="cross_entropy.png" height="285" width="585">
   </div>  
 
