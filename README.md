@@ -151,13 +151,13 @@ Cross_entropy on the whole training set: 0.0034, accuracy: 100.00%.
 通过 `Tensorboard` 进行可视化处理后得到识别精度随迭代次数的变化（由于尚未对特征参数及网络结构优化，所以训练后期仍存在 `0.5%` 的较小精度波动）：
 
   <div align='center'>
-  <img src="./resources/accuracy.png" alt="accuracy.png" height="285" width="585">
+  <img src="./resources/accuracy.PNG" alt="accuracy.png" height="285" width="585">
   </div>  
 
 以及交叉熵损失随迭代次数的变化：
 
   <div align='center'>
-  <img src="./resources/cross_entropy.png" alt="cross_entropy.png" height="285" width="585">
+  <img src="./resources/cross_entropy.PNG" alt="cross_entropy.png" height="285" width="585">
   </div>  
 
 #### 1.2 神经网络分类（所有七种类型船只）
