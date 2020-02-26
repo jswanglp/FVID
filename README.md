@@ -194,7 +194,7 @@ Cross_entropy on the whole training set: 0.0089, accuracy: 100.00%.
 交叉熵损失随迭代次数的变化：
 
   <div align='center'>
-  <img src="./resources/net_structure_WNN.png" alt="net_structure_WNN.png" height="285" width="585">
+  <img src="./resources/cross_entropy_7types.png" alt="cross_entropy_7types.png" height="285" width="585">
   </div>  
 
 #### 2.1 小波神经网络分类（拖、张、刺网三种类型船只）
