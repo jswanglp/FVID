@@ -162,6 +162,41 @@ Cross_entropy on the whole training set: 0.0034, accuracy: 100.00%.
 
 #### 1.2 神经网络分类（所有七种类型船只）
 
+采用上述相同的网络结构对 `7` 种类型（拖网、张网、刺网、笼壶、钓具、杂渔具、围网）共 `951` 条渔船做分类识别，结果如下所示：
+
+```python
+Epoch 1, cross_entropy: 1.6541, accuracy: 39.06%.
+Epoch 10, cross_entropy: 0.4156, accuracy: 88.28%.
+Epoch 20, cross_entropy: 0.1895, accuracy: 92.19%.
+Epoch 30, cross_entropy: 0.1489, accuracy: 94.53%.
+Epoch 40, cross_entropy: 0.0976, accuracy: 96.09%.
+Epoch 50, cross_entropy: 0.0540, accuracy: 98.44%.
+Epoch 60, cross_entropy: 0.0474, accuracy: 98.44%.
+Epoch 70, cross_entropy: 0.0320, accuracy: 98.44%.
+Epoch 80, cross_entropy: 0.0783, accuracy: 95.31%.
+Epoch 90, cross_entropy: 0.0357, accuracy: 98.44%.
+Epoch 100, cross_entropy: 0.0133, accuracy: 100.00%.
+Epoch 110, cross_entropy: 0.0147, accuracy: 100.00%.
+Epoch 120, cross_entropy: 0.0304, accuracy: 99.22%.
+Epoch 130, cross_entropy: 0.0150, accuracy: 100.00%.
+Epoch 140, cross_entropy: 0.0141, accuracy: 100.00%.
+Epoch 150, cross_entropy: 0.0151, accuracy: 100.00%.
+Training completed.
+
+Cross_entropy on the whole training set: 0.0089, accuracy: 100.00%.
+```
+通过可视化处理后得到识别精度随迭代次数的变化（由于船只类型及样本数的增加，当采用与之前相同的网络结构做分类时，网络对随机小批量样本的识别精度的波动也变大，**因而我在不改变总体网络结构的情况下微调了几个超参**，使得网络能保持在 `3` 种类型船只分类任务上的表现）：
+
+  <div align='center'>
+  <img src="./resources/accuracy_7types.png" alt="accuracy_7types.png" height="285" width="585">
+  </div>  
+
+交叉熵损失随迭代次数的变化：
+
+  <div align='center'>
+  <img src="./resources/net_structure_WNN.png" alt="net_structure_WNN.png" height="285" width="585">
+  </div>  
+
 #### 2.1 小波神经网络分类（拖、张、刺网三种类型船只）
 
 #### 2.2 小波神经网络分类（所有七种类型船只）
