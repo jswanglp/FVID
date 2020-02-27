@@ -30,9 +30,9 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
 
 - **拖网类型船只的总样本数（船号数）为 `445` **，总的数据组数为 `17,730,700`，其中船号为 `47292` 的拖网渔船拥有最少记录数据 `20,922` 组，拥有最多记录数据的船号为 `50029`，包含 `63,356` 组：
 
-  <table frame="box" align="center" border="1">
+  <table frame="box" align="center" width="600" border="1">
   <tr>
-    <th align="center" width="300">船号</th>
+    <th align="center" width="200">船号</th>
     <th align="center">数据总数（组）</th>
   </tr>
   <tr>
