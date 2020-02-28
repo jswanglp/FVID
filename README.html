@@ -583,10 +583,10 @@ header, .context-menu, .megamenu-content, footer{
 <img src="./resources/trawl.png" alt="trawl.png" height="200" width="270">
 </div></li><li><p><span>航速比：相同类型船只的航速比去除掉一些奇异点之后的直方图拟合曲线具有一定的相似性，具有较强的可区分特征。可以尝试用卷积神经网络做分类（航速比直方图拟合曲线图多为背景信息，图像信息较少，可能结果不是很好，作为第二方案）。  </span></p></li><li><p><span>航速变化率及航向变化率：可以尝试将航速变化率及航向变化划分为几个区域，然后在这些区域内提取不同的统计学特征用来表征这个类型的船只，关键点在于如何选择合适的区域使得提取的特征具有可区分性。</span></p><div align="center">
 <img src="./resources/speed_rate.png" alt="speed_rate.png" height="213" width="508">
-</div></li></ul><h1><a name="第一方案特征提取及分类）" class="md-header-anchor"></a><span>第一方案（特征提取及分类）</span></h1><h2><a name="拖网数据分析及特征提取" class="md-header-anchor"></a><span>拖网数据分析及特征提取</span></h2><ul><li><p><strong><span>拖网类型船只的总样本数（船号数）为 </span><code>445</code></strong><span>，总的数据组数为 </span><code>17,730,700</code><span>，其中船号为 </span><code>47292</code><span> 的拖网渔船拥有最少记录数据 </span><code>20,922</code><span> 组，拥有最多记录数据的船号为 </span><code>50029</code><span>，包含 </span><code>63,356</code><span> 组：</span></p><table align="center" style="height:160;width:730px;" border="2">
+</div></li></ul><h1><a name="第一方案特征提取及分类）" class="md-header-anchor"></a><span>第一方案（特征提取及分类）</span></h1><h2><a name="拖网数据分析及特征提取" class="md-header-anchor"></a><span>拖网数据分析及特征提取</span></h2><ul><li><p><strong><span>拖网类型船只的总样本数（船号数）为 </span><code>445</code></strong><span>，总的数据组数为 </span><code>17,730,700</code><span>，其中船号为 </span><code>47292</code><span> 的拖网渔船拥有最少记录数据 </span><code>20,922</code><span> 组，拥有最多记录数据的船号为 </span><code>50029</code><span>，包含 </span><code>63,356</code><span> 组：</span></p><table align="center" style="height:160;width:730;" border="1">
 <tbody><tr>
-  <th align="center" width="292px">船号</th>
-  <th align="center" width="438px">数据总数（组）</th>
+  <th align="center" width="292">船号</th>
+  <th align="center" width="438">数据总数（组）</th>
 </tr>
 <tr>
   <td align="center">47292（最少数据）</td>
@@ -606,10 +606,10 @@ header, .context-menu, .megamenu-content, footer{
 <img src="./resources/trawl_sample.png" alt="trawl_sample.png" height="213" width="508">
 </div>  </li><li><p><span>接着使用主成分分析法从这些 </span><code>1000</code><span> 维特征中提取出 </span><span class="MathJax_SVG" tabindex="-1" style="font-size: 100%; display: inline-block;"><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.441ex" height="1.877ex" viewBox="0 -755.9 1051 808.1" role="img" focusable="false" style="vertical-align: -0.121ex;"><defs><path stroke-width="0" id="E8-MJMATHI-4D" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><use xlink:href="#E8-MJMATHI-4D" x="0" y="0"></use></g></svg></span><script type="math/tex">M</script><span> 维的特征向量（暂时先取 </span><code>35</code><span> 维）并做归一化处理，最后将该特征与速占比特征（</span><code>100</code><span> 维）结合得到该条渔船最终的特征（</span><code>135</code><span> 维）。</span></p></li><li><p><span>下图是前两条拖网渔船的最终特征（Intel(R) Xeon(R) CPU @ 2.30GHz下，该类型所有船只的特征提取总耗时约 </span><code>1511</code><span> 秒）。</span></p><div align="center">
 <img src="./resources/trawl_feature.png" alt="trawl_feature.png" height="213" width="508">
-</div>  </li></ul><h2><a name="张网数据分析及特征提取" class="md-header-anchor"></a><span>张网数据分析及特征提取</span></h2><ul><li><p><strong><span>张网类型船只的总样本数（船号数）为 </span><code>77</code></strong><span>，总的数据组数为 </span><code>2,875,900</code><span>，其中船号为 </span><code>35234</code><span> 的张网渔船拥有最少记录数据 </span><code>20,557</code><span> 组，拥有最多记录数据的船号为 </span><code>55430</code><span>，包含 </span><code>57,307</code><span> 组：</span></p><table align="center" style="height:160;width:730px;" border="2">
+</div>  </li></ul><h2><a name="张网数据分析及特征提取" class="md-header-anchor"></a><span>张网数据分析及特征提取</span></h2><ul><li><p><strong><span>张网类型船只的总样本数（船号数）为 </span><code>77</code></strong><span>，总的数据组数为 </span><code>2,875,900</code><span>，其中船号为 </span><code>35234</code><span> 的张网渔船拥有最少记录数据 </span><code>20,557</code><span> 组，拥有最多记录数据的船号为 </span><code>55430</code><span>，包含 </span><code>57,307</code><span> 组：</span></p><table align="center" style="height:160;width:730;" border="1">
 <tbody><tr>
-  <th align="center" width="292px">船号</th>
-  <th align="center" width="438px">数据总数（组）</th>
+  <th align="center" width="292">船号</th>
+  <th align="center" width="438">数据总数（组）</th>
 </tr>
 <tr>
   <td align="center">35234（最少数据）</td>
@@ -629,10 +629,10 @@ header, .context-menu, .megamenu-content, footer{
 <img src="./resources/net_sample.png" alt="net_sample.png" height="213" width="508">
 </div></li><li><p><span>前两条张网渔船的最终 </span><code>135</code><span> 维特征（该类型所有船只的特征提取总耗时约 </span><code>243</code><span> 秒）。</span></p><div align="center">
 <img src="./resources/net_feature.png" alt="net_feature.png" height="213" width="508">
-</div></li></ul><h2><a name="刺网数据分析及特征提取" class="md-header-anchor"></a><span>刺网数据分析及特征提取</span></h2><ul><li><p><strong><span>刺网类型船只的总样本数（船号数）为 </span><code>173</code></strong><span>，总的数据组数为 </span><code>8,481,908</code><span>，其中船号为 </span><code>52251</code><span> 的刺网渔船拥有最少记录数据 </span><code>25,871</code><span> 组，拥有最多记录数据的船号为 </span><code>28824</code><span>，包含 </span><code>63,410</code><span> 组：</span></p><table align="center" style="height:160;width:730px;" border="2">
+</div></li></ul><h2><a name="刺网数据分析及特征提取" class="md-header-anchor"></a><span>刺网数据分析及特征提取</span></h2><ul><li><p><strong><span>刺网类型船只的总样本数（船号数）为 </span><code>173</code></strong><span>，总的数据组数为 </span><code>8,481,908</code><span>，其中船号为 </span><code>52251</code><span> 的刺网渔船拥有最少记录数据 </span><code>25,871</code><span> 组，拥有最多记录数据的船号为 </span><code>28824</code><span>，包含 </span><code>63,410</code><span> 组：</span></p><table align="center" style="height:160;width:730;" border="1">
 <tbody><tr>
-  <th align="center" width="292px">船号</th>
-  <th align="center" width="438px">数据总数（组）</th>
+  <th align="center" width="292">船号</th>
+  <th align="center" width="438">数据总数（组）</th>
 </tr>
 <tr>
   <td align="center">52251（最少数据）</td>
