@@ -30,10 +30,10 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
 
 - **拖网类型船只的总样本数（船号数）为 `445`**，总的数据组数为 `17,730,700`，其中船号为 `47292` 的拖网渔船拥有最少记录数据 `20,922` 组，拥有最多记录数据的船号为 `50029`，包含 `63,356` 组：
 
-  <table align="center" style="height:160;width:730px;" border="2">
+  <table align="center" style="height:160;width:730;" border="1">
   <tr>
-    <th align="center" width="292px">船号</th>
-    <th align="center" width="438px">数据总数（组）</th>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
   </tr>
   <tr>
     <td align="center">47292（最少数据）</td>
@@ -48,6 +48,7 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
     <th align="center">17,730,700</th>
   </tr>
   </table>
+  
   
   
   其中，船号31436，第3411、3412航速数据错误。
@@ -76,10 +77,10 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
 
 - **张网类型船只的总样本数（船号数）为 `77`**，总的数据组数为 `2,875,900`，其中船号为 `35234` 的张网渔船拥有最少记录数据 `20,557` 组，拥有最多记录数据的船号为 `55430`，包含 `57,307` 组：
 
-  <table align="center" style="height:160;width:730px;" border="2">
+  <table align="center" style="height:160;width:730;" border="1">
   <tr>
-    <th align="center" width="292px">船号</th>
-    <th align="center" width="438px">数据总数（组）</th>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
   </tr>
   <tr>
     <td align="center">35234（最少数据）</td>
@@ -117,10 +118,10 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
 
 - **刺网类型船只的总样本数（船号数）为 `173`**，总的数据组数为 `8,481,908`，其中船号为 `52251` 的刺网渔船拥有最少记录数据 `25,871` 组，拥有最多记录数据的船号为 `28824`，包含 `63,410` 组：
 
-  <table align="center" style="height:160;width:730px;" border="2">
+  <table align="center" style="height:160;width:730;" border="1">
   <tr>
-    <th align="center" width="292px">船号</th>
-    <th align="center" width="438px">数据总数（组）</th>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
   </tr>
   <tr>
     <td align="center">52251（最少数据）</td>
