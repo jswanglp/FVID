@@ -4,7 +4,7 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
 
 ## 可用于识别的特征类型
 
-- 航速：拖网最高（![](http://latex.codecogs.com/gif.download?%5Clarge%202%3Cv%3C6)），其次为刺网（![](http://latex.codecogs.com/gif.download?%5Clarge%201%3Cv%3C2)），最低为张网（![](http://latex.codecogs.com/gif.download?%5Clarge%200%3Cv%3C1)）。[浙江数字渔场建设工作方案](浙江数字渔场建设工作方案2019529l.doc) 给出的各类型渔船航速的数据显示，总体速度波动较大，但基本都存在一个稳定的作业速度，所以可以先对速度检测曲线进行类似下图的平滑处理，减少速度曲线的波动。  
+- 航速：拖网最高（![](http://latex.codecogs.com/gif.latex?\2<v<6)），其次为刺网（![](http://latex.codecogs.com/gif.latex?\1<v<2)），最低为张网（![](http://latex.codecogs.com/gif.latex?\0<v<1)）。[浙江数字渔场建设工作方案](浙江数字渔场建设工作方案2019529l.doc) 给出的各类型渔船航速的数据显示，总体速度波动较大，但基本都存在一个稳定的作业速度，所以可以先对速度检测曲线进行类似下图的平滑处理，减少速度曲线的波动。  
 
   <div align='center'>
   <img src="./resources/smoothing.PNG" alt="smoothing.PNG" height="182" width="466">
@@ -53,13 +53,13 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
   
   其中，船号31436，第3411、3412航速数据错误。
   
-- **拖网数据特点:** 航速在 ![](http://latex.codecogs.com/gif.download?%5Clarge%20v%3D0) 及 ![](http://latex.codecogs.com/gif.download?%5Clarge%20v%3D2) 附近的权重较大，这点与其它两种类型的船只差别较大，因而该航速比直方图特征可直接作为部分的拖网船型的特征（为防止可能存在的错误航速数据的影响，设定航速最大值 ![](http://latex.codecogs.com/gif.download?%5Clarge%20v_%7Bmax%7D%3D2)，然后归一化处理）。
+- **拖网数据特点:** 航速在 ![](http://latex.codecogs.com/gif.latex?\v=0) 及 ![](http://latex.codecogs.com/gif.latex?\v=2) 附近的权重较大，这点与其它两种类型的船只差别较大，因而该航速比直方图特征可直接作为部分的拖网船型的特征（为防止可能存在的错误航速数据的影响，设定航速最大值 ![](http://latex.codecogs.com/gif.latex?\v_{max}=25)，然后归一化处理）。
 
   <div align='center'>
   <img src="./resources/speed_hist1.png" alt="speed_hist1.png" height="213" width="508">
   </div>  
   
-- 通过先对经、纬度坐标信息做降维去相关处理，然后可以得到每条渔船的 ![](http://latex.codecogs.com/gif.download?%5Clarge%201%20%5Ctimes%20N) 维的特征，随后通过对特征固定数量的采样确保每条渔船的特征维数（暂时取 `1000` 维）都相同。
+- 通过先对经、纬度坐标信息做降维去相关处理，然后可以得到每条渔船的 ![](http://latex.codecogs.com/gif.latex?\1\times%20N) 维的特征，随后通过对特征固定数量的采样确保每条渔船的特征维数（暂时取 `1000` 维）都相同。
 
   <div align='center'>
   <img src="./resources/trawl_sample.png" alt="trawl_sample.png" height="213" width="508">
@@ -96,7 +96,7 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
   </tr>
   </table>
   
-- **张网数据特点:** 航速在 ![](http://latex.codecogs.com/gif.download?%5Clarge%200%3Cv%3C2) 之间分布较多，这点与刺网相似，但是张网的航线轨迹图的 **目标地点** 更加的明确，侧面反映该类渔船的航向变化不是很频繁，这点与其它两种类型的船只差别较大。  
+- **张网数据特点:** 航速在 ![](http://latex.codecogs.com/gif.latex?\0<v<2) 之间分布较多，这点与刺网相似，但是张网的航线轨迹图的 **目标地点** 更加的明确，侧面反映该类渔船的航向变化不是很频繁，这点与其它两种类型的船只差别较大。  
   
   <div align='center'>
   <img src="./resources/speed_hist2.png" alt="speed_hist2.png" height="213" width="508">
