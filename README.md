@@ -1,13 +1,13 @@
 # 特征分析
 
-_PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导致某些图像边缘坐标信息的丢失，可以通过书签页迅速跳转查看各章节，或者查看显示效果更佳的 [HTML格式的说明文档](README.html)。_
+_PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导致某些图像边缘坐标信息的丢失，可以通过书签页迅速跳转查看各章节。_
 
 ## 可用于识别的特征类型
 
 - 航速：拖网最高（![](http://latex.codecogs.com/gif.latex?\2<v<6)），其次为刺网（![](http://latex.codecogs.com/gif.latex?\1<v<2)），最低为张网（![](http://latex.codecogs.com/gif.latex?\0<v<1)）。[浙江数字渔场建设工作方案](浙江数字渔场建设工作方案2019529l.doc) 给出的各类型渔船航速的数据显示，总体速度波动较大，但基本都存在一个稳定的作业速度，所以可以先对速度检测曲线进行类似下图的平滑处理，减少速度曲线的波动。  
 
   <div align='center'>
-  <img src="./resources/smoothing.PNG" alt="smoothing.PNG" height="182" width="466">
+  <img src="./resources/smoothing.png" alt="smoothing.png" height="182" width="466">
   </div>
 
 - 航向（轨迹图）：经过观察分析发现各类型渔船的航向图有着各自类型独有的特点，比如拖网航向变化很频繁，轨迹图形成多个集中的区域；张网的航向变化很少，轨迹图多为直线；刺网兼有拖网及张网的特点，需要预处理后才能区分。可以尝试通过卷积神经网络对航向图像进行分类处理（**已画出所有拖网船型的轨迹图，无明显可区分特征，未经预处理不适合卷积神经网络直接分类**）。  
@@ -22,7 +22,6 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
   <div align='center'>
   <img src="./resources/speed_rate.png" alt="speed_rate.png" height="213" width="508">
   </div>
-
 
 # 第一方案（特征提取及分类）
 
@@ -49,11 +48,9 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
   </tr>
   </table>
   
-  
-  
   其中，船号31436，第3411、3412航速数据错误。
   
-- **拖网数据特点:** 航速在 ![](http://latex.codecogs.com/gif.latex?\v=0) 及 ![](http://latex.codecogs.com/gif.latex?\v=2) 附近的权重较大，这点与其它两种类型的船只差别较大，因而该航速比直方图特征可直接作为部分的拖网船型的特征（为防止可能存在的错误航速数据的影响，设定航速最大值 ![](http://latex.codecogs.com/gif.latex?\v_{max}=25)，然后归一化处理）。
+- **拖网数据特点:** 航速在 ![](http://latex.codecogs.com/gif.latex?v=0) 及 ![](http://latex.codecogs.com/gif.latex?v=2) 附近的权重较大，这点与其它两种类型的船只差别较大，因而该航速比直方图特征可直接作为部分的拖网船型的特征（为防止可能存在的错误航速数据的影响，设定航速最大值 ![](http://latex.codecogs.com/gif.latex?\v_{max}=25)，然后归一化处理）。
 
   <div align='center'>
   <img src="./resources/speed_hist1.png" alt="speed_hist1.png" height="213" width="508">
@@ -155,6 +152,94 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
   <img src="./resources/gill_net_feature.png" alt="gill_net_feature.png" height="213" width="508">
   </div>  
 
+## 其它四类渔船的数据概况
+
+- **笼壶类型船只的总样本数（船号数）为 `127` **，总的数据组数为 `3,424,891`，其中船号为 `39278` 的笼壶渔船拥有最少记录数据 `11,412` 组，拥有最多记录数据的船号为 `44967`，包含 `54,877` 组：
+
+  <table align="center" style="height:160;width:730;" border="1">
+  <tr>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
+  </tr>
+  <tr>
+    <td align="center">39278（最少数据）</td>
+    <td align="center">11,412</td>
+  </tr>
+  <tr>
+    <td align="center">44967（最多数据）</td>
+    <td align="center">54,877</td> 
+  </tr>
+  <tr>
+    <th align="center">所有笼壶船只</th>
+    <th align="center">3,424,891</th>
+  </tr>
+  </table>
+
+- **钓具类型船只的总样本数（船号数）为 `6` **，总的数据组数为 `320,988`，其中船号为 `51554` 的钓具渔船拥有最少记录数据 `42,660` 组，拥有最多记录数据的船号为 `35513`，包含 `56,327` 组：
+  
+  <table align="center" style="height:160;width:730;" border="1">
+  <tr>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
+  </tr>
+  <tr>
+    <td align="center">51554（最少数据）</td>
+    <td align="center">42,660</td>
+  </tr>
+  <tr>
+    <td align="center">35513（最多数据）</td>
+    <td align="center">56,327</td> 
+  </tr>
+  <tr>
+    <th align="center">所有钓具船只</th>
+    <th align="center">320,988</th>
+  </tr>
+  </table>
+
+- **杂渔具类型船只的总样本数（船号数）为 `61` **，总的数据组数为 `2,151,697`，其中船号为 `39441` 的杂渔具渔船拥有最少记录数据 `24,116` 组，拥有最多记录数据的船号为 `46675`，包含 `57,201` 组：
+  
+  <table align="center" style="height:160;width:730;" border="1">
+  <tr>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
+  </tr>
+  <tr>
+    <td align="center">39441（最少数据）</td>
+    <td align="center">24,116</td>
+  </tr>
+  <tr>
+    <td align="center">46675（最多数据）</td>
+    <td align="center">57,201</td> 
+  </tr>
+  <tr>
+    <th align="center">所有杂渔具船只</th>
+    <th align="center">2,151,697</th>
+  </tr>
+  </table>
+
+- **围网类型船只的总样本数（船号数）为 `62` **，总的数据组数为 `2,178,901`，其中船号为 `45232` 的围网渔船拥有最少记录数据 `18,276` 组，拥有最多记录数据的船号为 `47029`，包含 `63,362` 组：
+
+  <table align="center" style="height:160;width:730;" border="1">
+  <tr>
+    <th align="center" width="292">船号</th>
+    <th align="center" width="438">数据总数（组）</th>
+  </tr>
+  <tr>
+    <td align="center">45232（最少数据）</td>
+    <td align="center">18,276</td>
+  </tr>
+  <tr>
+    <td align="center">47029（最多数据）</td>
+    <td align="center">63,362</td> 
+  </tr>
+  <tr>
+    <th align="center">所有围网船只</th>
+    <th align="center">2,178,901</th>
+  </tr>
+  </table>
+
+这 `4` 种类型渔船所有船只的特征提取总耗时约 `660` 秒。
+
 ## 特征分类
 
 #### 1.1 神经网络分类（拖、张、刺网三种类型船只）
@@ -162,8 +247,9 @@ _PS：建议 180% 以上倍率查看 [README.pdf](README.pdf)，否则可能导�
 对上述提取的特征采用包含 `2` 个隐层的神经网络做分类，网络结构如下所示：
 
   <div align='center'>
-  <img src="./resources/net_structure.PNG" alt="net_structure.png" height="285" width="585">
+  <img src="./resources/net_structure.png" alt="net_structure.png" height="285" width="585">
   </div>  
+
 
 对 `3` 种类型共 `695` 条渔船做分类识别，结果如下所示：  
 
@@ -192,14 +278,16 @@ Cross_entropy on the whole training set: 0.0034, accuracy: 100.00%.
 通过 `Tensorboard` 进行可视化处理后得到识别精度随迭代次数的变化（由于尚未对特征参数及网络结构优化，所以训练后期仍存在 `0.5%` 的较小精度波动）：
 
   <div align='center'>
-  <img src="./resources/accuracy.PNG" alt="accuracy.png" height="285" width="585">
+  <img src="./resources/accuracy.png" alt="accuracy.png" height="285" width="585">
   </div>  
+
 
 以及交叉熵损失随迭代次数的变化：
 
   <div align='center'>
-  <img src="./resources/cross_entropy.PNG" alt="cross_entropy.png" height="285" width="585">
+  <img src="./resources/cross_entropy.png" alt="cross_entropy.png" height="285" width="585">
   </div>  
+
 
 #### 1.2 神经网络分类（所有七种类型船只）
 
@@ -240,9 +328,96 @@ Cross_entropy on the whole training set: 0.0089, accuracy: 100.00%.
 
 #### 2.1 小波神经网络分类（拖、张、刺网三种类型船只）
 
+采用包含 `1` 个隐层的小波神经网络做特征分类，网络结构与神经网络类似，只是将固定的激活函数换成了可平移缩放的小波函数。
+
+隐层的小波函数采用的是 `POLYWOG1` 小波<a href='#fn1' name='fn1b'><sup>[1]</sup></a>，左下图所示的为 `POLYWOG1` 小波的母函数，右下图所示的则为 `POLYWOG1` 小波母函数的导函数。
+
+<div align='center'>
+<img src="./resources/POLYWOG1.png" alt="POLYWOG1.png" height="280" width="700">
+</div>  
+尽管该小波神经网络的参数总量只有上述普通神经网络参数的 `26.5%`，但是通过对训练结果的比较，可以看出在整个训练过程中的前者表现要远优于后者。 
+
+同样对 `3` 种类型共 `695` 条渔船做分类识别，结果如下所示（`60` 次迭代之后随机小批量训练数据的识别精度已经稳定在 `100%`，最终所有训练集数据的识别精度仍然保持在了 `100%`）:
+
+```python
+Epoch 1, cross_entropy: 0.9755, accuracy: 57.81%.
+Epoch 10, cross_entropy: 0.3573, accuracy: 89.84%.
+Epoch 20, cross_entropy: 0.2520, accuracy: 91.41%.
+Epoch 30, cross_entropy: 0.2118, accuracy: 93.75%.
+Epoch 40, cross_entropy: 0.0841, accuracy: 97.66%.
+Epoch 50, cross_entropy: 0.0395, accuracy: 99.22%.
+Epoch 60, cross_entropy: 0.0217, accuracy: 100.00%.
+Epoch 70, cross_entropy: 0.0193, accuracy: 100.00%.
+Epoch 80, cross_entropy: 0.0242, accuracy: 100.00%.
+Epoch 90, cross_entropy: 0.0102, accuracy: 100.00%.
+Epoch 100, cross_entropy: 0.0069, accuracy: 100.00%.
+Epoch 110, cross_entropy: 0.0109, accuracy: 100.00%.
+Epoch 120, cross_entropy: 0.0064, accuracy: 100.00%.
+Epoch 130, cross_entropy: 0.0071, accuracy: 100.00%.
+Epoch 140, cross_entropy: 0.0047, accuracy: 100.00%.
+Epoch 150, cross_entropy: 0.0056, accuracy: 100.00%.
+Training completed.
+
+Cross_entropy on the whole training set: 0.0047, accuracy: 100.00%.
+```
+
+通过可视化处理后得到识别精度随迭代次数的变化（训练后期识别精度无波动，说明小波神经网络的拟合、泛化能力都比普通神经网络要强，更适用于此类型的分类任务）：
+
+  <div align='center'>
+  <img src="./resources/accuracy_WNN.png" alt="accuracy_WNN.png" height="285" width="585">
+  </div>  
+
+交叉熵损失随迭代次数的变化（交叉熵损失的波动也小于神经网络）：
+
+  <div align='center'>
+  <img src="./resources/cross_entropy_WNN.png" alt="cross_entropy_WNN.png" height="285" width="585">
+  </div>
+
 #### 2.2 小波神经网络分类（所有七种类型船只）
 
+在`7` 种类型共 `951` 条渔船的分类任务上同样采用是包含 `1` 个隐层相同网络结构的小波神经网络。隐层的小波函数采用的是 `POLYWOG2` 小波，左下图所示的为 `POLYWOG2` 小波的母函数，右下图所示的则为 `POLYWOG2` 小波母函数的导函数。
+
+<div align='center'>
+<img src="./resources/POLYWOG2.png" alt="POLYWOG2.png" height="280" width="700">
+</div>  
+
+在船只类型及样本数都增加的情况下，**没有经过超参的微调**，该网络仍然能够维持在 `3` 种类型船只分类任务上的表现，结果如下所示（`90` 次迭代之后随机小批量训练数据的识别精度稳定在 `100%`，最终所有训练集数据的识别精度仍然维持在 `100%`，`POLYWOG1` 小波在 `100` 次迭代之后识别精度能稳定在 `100%`）:
+
+```python
+Epoch 1, cross_entropy: 1.5239, accuracy: 42.97%.
+Epoch 10, cross_entropy: 0.6749, accuracy: 80.47%.
+Epoch 20, cross_entropy: 0.3296, accuracy: 92.97%.
+Epoch 30, cross_entropy: 0.1649, accuracy: 96.88%.
+Epoch 40, cross_entropy: 0.1068, accuracy: 97.66%.
+Epoch 50, cross_entropy: 0.0574, accuracy: 99.22%.
+Epoch 60, cross_entropy: 0.0585, accuracy: 99.22%.
+Epoch 70, cross_entropy: 0.0386, accuracy: 100.00%.
+Epoch 80, cross_entropy: 0.0137, accuracy: 100.00%.
+Epoch 90, cross_entropy: 0.0181, accuracy: 100.00%.
+Epoch 100, cross_entropy: 0.0182, accuracy: 100.00%.
+Epoch 110, cross_entropy: 0.0124, accuracy: 100.00%.
+Epoch 120, cross_entropy: 0.0169, accuracy: 100.00%.
+Epoch 130, cross_entropy: 0.0105, accuracy: 100.00%.
+Epoch 140, cross_entropy: 0.0100, accuracy: 100.00%.
+Epoch 150, cross_entropy: 0.0130, accuracy: 100.00%.
+Training completed.
+
+Cross_entropy on the whole training set: 0.0102, accuracy: 100.00%.
+```
+
+通过可视化处理后得到识别精度随迭代次数的变化：
+
+  <div align='center'>
+  <img src="./resources/accuracy_WNN_7types.png" alt="accuracy_WNN_7types.png" height="285" width="585">
+  </div>  
+
+交叉熵损失随迭代次数的变化：
+
+  <div align='center'>
+  <img src="./resources/cross_entropy_WNN_7types.png" alt="cross_entropy_WNN_7types.png" height="285" width="585">
+  </div>
 -----
+
 **脚注 (Footnote)**
 
 <a name='fn1'>[1]</a>: [Othmani M, Khlifi Y. 3D Object Model Reconstruction Based on Polywogs Wavelet Network Parametrization[J]. World Academy of Science, Engineering and Technology, International Journal of Computer, Electrical, Automation, Control and Information Engineering, 2016, 10(7): 1289-1294.](https://pdfs.semanticscholar.org/00c7/a935a8135c3c2e7cba2d869e42d2cbbfdc60.pdf)   
